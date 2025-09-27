@@ -1,0 +1,5 @@
+Scenario 1 — Backend API Design Your company is building a video streaming platform (like YouTube).
+ A new feature requires an API endpoint where users can "like" a video. 
+ Requirements: A user can like a video only once. If they like it again, the like should be removed (toggle like).
+  The API should be efficient and handle high traffic. Data is stored in MongoDB. Question: How will you design this endpoint?
+   API route and method Database schema changes (if any) Logic flow inside the controller How to handle concurrency so likes aren’t double-counted
