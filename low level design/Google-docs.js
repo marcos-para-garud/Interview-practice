@@ -67,15 +67,15 @@ class TableElement {
 
 class Editor {
     constructor() {
-        this.element = [];
+        this.elements = [];
     }
 
     addElement(element){
-        this.element.push(element);
+        this.elements.push(element);
     }
 
     render() {
-        this.element.forEach(el => el.render());
+        this.elements.forEach(el => el.render());
     }
 }
 
