@@ -240,3 +240,98 @@ const storage = new CartDBStorage();
 
 printer.printInvoice(cart);
 storage.saveCart(cart);
+
+
+
+
+
+
+
+// 🧩 Problem Statement (SRP - Add to Cart System)
+
+// Design an E-commerce Add to Cart System following the Single Responsibility Principle.
+
+// Functional Requirements
+
+// A user can add items to the cart.
+
+// The system should calculate the total price of the cart.
+
+// It should apply discounts (e.g., 10% off).
+
+// It should generate an order summary (showing all products and totals).
+
+// It should store cart details in the database.
+
+// 💬 Your task:
+
+// Follow SRP strictly — every class should handle only one responsibility.
+
+// Use constructor-based dependency injection where suitable.
+
+// Show how you’d create a real-world object (cart → total → summary → save).
+
+
+class Product {
+    constructor(name, price, quantity = 1) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+}
+
+class Cart {
+    constructor() {
+        this.items = [];
+    }
+
+    addProduct(product) {
+        this.items.push(product);
+    }
+}
+
+class TotalPrice {
+    calculateTotalPrice(cart) {
+        let total = 0;
+        for(let i = 0; i<cart.items.length; i++) {
+            total += cart.items[i].price * cart.items[i].quantity;
+        }
+        return total;
+    }
+}
+
+class Discount {
+    applyDiscount(total, discountPercent) {
+        return total - (total * discountPercent / 100);
+    }
+}
+
+class OrderSummary {
+    generateSummary(cart, total) {
+        for(let i = 0; i<cart.items.length; i++) {
+            console.log(`${cart.items[i].name} x${cart.items[i].quantity} - $${cart.items[i].price * cart.items[i].quantity}`);
+            
+        }
+        console.log(`Total: $${total}`);
+    }
+}
+
+class StoreDB {
+    saveCart(cart) {
+        console.log("Saving cart to DB...");
+        console.log(JSON.stringify(cart.items, null, 2));
+    }
+}
+
+const newCart = new Cart();
+newCart.addProduct(new Product("Laptop", 1000, 1));
+newCart.addProduct(new Product("Mouse", 50, 2));
+
+const newTotalPrice = new TotalPrice();
+const total = newTotalPrice.calculateTotalPrice(newCart);
+
+const newDiscount = new Discount();
+const discountedTotal = newDiscount.applyDiscount(total, 10);
+
+const newOrderSummary = new OrderSummary();
+newOrderSummary.generateSummary(newCart, discountedTotal);
