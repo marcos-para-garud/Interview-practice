@@ -226,3 +226,54 @@
 // total data per day = 900,000,000 * 20 kb = 18,000,000,000 kb
 
 // converting to GB ~ 18,000,000,000 kb / 1000 / 1000 = 18000 GB
+
+
+
+
+
+
+
+// Question 5
+
+// 🧮 Question 1 — YouTube-like Video Upload System
+
+// Problem:
+// Estimate the storage and bandwidth requirements for a YouTube-like platform.
+
+// Given / Assume:
+
+// 1 billion users.
+
+// 20% upload at least 1 video/month.
+
+// Average video length = 5 minutes.
+
+// Average bitrate = 2 Mbps (megabits/sec).
+
+// 1 byte = 8 bits.
+
+// Storage replication factor = 3 (for redundancy).
+
+// Keep 12 months of video hot (frequently accessible).
+
+// 👉 Tasks:
+
+// Compute total videos uploaded per month.
+
+// Compute data per video, total data per month, and per year (with replication).
+
+// Roughly estimate upload bandwidth required per day, assuming uploads are evenly distributed.
+
+
+
+// SOLUTION
+
+// total videos uploaded per month = 1 billion * 0.2  = 200 million 
+//  average video length = 5 minutes = 300 seconds
+// average bitrate = 2 Mbps  = 2 / 8 MBps = 0.25 MBps
+
+// data per video = 300 seconds * 0.25 MBps = 75 MB
+// total data per month = 200 million * 75 MB = 150 00 million MB = 15 million GB
+// total data per year = 15 million GB * 12 months * 3 (replication) = 540 million GB = 540 PB
+
+// upload bandwidth required per day = 15 million GB / 30 days = 500,000 GB/day = 500 TB/day
