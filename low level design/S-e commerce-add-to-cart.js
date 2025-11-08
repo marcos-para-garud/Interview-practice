@@ -335,3 +335,90 @@ const discountedTotal = newDiscount.applyDiscount(total, 10);
 
 const newOrderSummary = new OrderSummary();
 newOrderSummary.generateSummary(newCart, discountedTotal);
+
+
+
+
+
+
+/***
+ * REVISION
+ */
+
+
+// 🧩 Problem Statement (SRP - Add to Cart System)
+
+// Design an E-commerce Add to Cart System following the Single Responsibility Principle.
+
+// Functional Requirements
+
+// A user can add items to the cart.
+
+// The system should calculate the total price of the cart.
+
+// It should apply discounts (e.g., 10% off).
+
+// It should generate an order summary (showing all products and totals).
+
+// It should store cart details in the database.
+
+// 💬 Your task:
+
+// Follow SRP strictly — every class should handle only one responsibility.
+
+// Use constructor-based dependency injection where suitable.
+
+// Show how you’d create a real-world object (cart → total → summary → save).
+
+
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+
+class Product {
+    constructor (price , quantity , name)
+    {
+        this.price = price;
+        this.quantity = quantity;
+        this.name = name;
+    }
+}
+class Cart {
+    constructor () {
+        this.items = [];
+    }
+    addProduct(product) 
+    {
+        this.items.push(product);
+    }
+}
+class TotalPrice {
+    calculateTotalPrice(cart) {
+        let total = 0;
+        for(let i = 0; i < cart.items.length; i++)
+        {
+            total += cart.items[i].price * cart.items[i].quantity;
+        }
+        return total;
+         
+    }
+}
+class Discount {
+    applyDiscount(total , discountPercent) {
+        return (total - total * discountPercent/100);
+    }
+}
+class OrderSummary {
+    orderSummary(cart) {
+        for(let i=0; i<cart.items.length; i++)
+        {
+            console.log("item name " + cart.items[i].name + "price " + cart.items[i].price);
+        }
+    }
+}
+class StoreDB {
+    saveCart(cart) {
+        console.log("Saving cart to DB...");
+        console.log(JSON.stringify(cart.items, null, 2));
+    }
+}
+
