@@ -169,3 +169,98 @@ newCarInvoicePrinterInstance.printInvoice(newBMW, cost);
 
 const newCarDBStorageInstance = new newCarDBStorage();
 newCarDBStorageInstance.store(newBMW);
+
+
+
+
+
+/***
+ * REVISION 
+ */
+
+
+// 🧩 Problem Statement (Like an Interview)
+
+// Design a simple Car Rental System using the
+// Single Responsibility Principle (SRP).
+
+// Requirements
+
+// A car can be rented if available.
+
+// Calculate the rental cost (daily rate × number of days).
+
+// Print an invoice for the rental.
+
+// Store the rental details in a database.
+
+// Constraints
+
+// Your design should follow SRP strictly.
+
+// Every class should have only one reason to change.
+
+// It should be easily extendable (for example: add discount, or taxes later).
+
+
+
+
+class NewCar {
+    constructor (name , pricePerDay , isAvailable) {
+        this.name = name;
+        this.pricePerDay = pricePerDay;
+        this.isAvailable = isAvailable;
+    }
+}
+class ShowRoom {
+    constructor () {
+        this.cars = [];
+    }
+    Cars (newCar) {
+        this.cars.push(newCar);
+    }
+}
+class RentalCost {
+    rentalCost (newCar , days) {
+        let cost = 0;
+        if(newCar.isAvailable){
+            cost = newCar.pricePerDay * days;
+        }
+        return cost;
+    }
+}
+class PrintInvoice {
+    printInvoice (newCar , cost) {
+        console.log("Name : " + newCar.name);
+        console.log("Price per Day : " + newCar.pricePerDay);
+        console.log("Total cost : " + cost);
+    }
+}
+class Save {
+    dataBase (newCar , cost) {
+        console.log("Name : " + newCar.name);
+        console.log("Price per Day : " + newCar.pricePerDay);
+        console.log("Availability : " + newCar.isAvailable);
+        console.log("Total cost : " + cost);
+    }
+}
+
+const Ferrari = new NewCar("Ferrari" , 5000 , true);
+const BMW = new NewCar("BMW" , 4000 , true);
+const Audi = new NewCar("Audi" , 4500 , false);
+
+const showRoom = new ShowRoom();
+showRoom.Cars(Ferrari);
+showRoom.Cars(BMW);
+showRoom.Cars(Audi);
+
+const cost = new RentalCost();
+const BMWCost = cost.rentalCost(BMW , 4);
+const FerrariCost = cost.rentalCost(Ferrari , 7);
+
+const invoice = new PrintInvoice();
+invoice.printInvoice(BMW , BMWCost);
+invoice.printInvoice(Ferrari , FerrariCost);
+
+const save = new Save();
+save.dataBase(BMW , BMWCost);
