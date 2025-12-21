@@ -279,7 +279,7 @@ class Database {
 }
 
 const accountDetails1 = new AccountDetails("Akash" , "Savings" , 123456 , 50000);
-const accountDetails2 = new AccountDetails("Mayank" , "Savings" , 023456 , 60000);
+const accountDetails2 = new AccountDetails("Mayank" , "Savings" , 234567 , 60000);
 const bank = new Bank();
 bank.addAccount(accountDetails1);
 bank.addAccount(accountDetails2);
@@ -291,6 +291,6 @@ account1.amount += earnedInterest;
 
 statement.generate(account1);
 statement.generate(account2);
-const newStatementGenerator = new StatementGenerator();
-newStatementGenerator.generate(accountDetails1);
-newStatementGenerator.generate(accountDetails2);
+const newStatementGenerator1 = new StatementGenerator();
+newStatementGenerator1.generate(accountDetails1);
+newStatementGenerator1.generate(accountDetails2);
