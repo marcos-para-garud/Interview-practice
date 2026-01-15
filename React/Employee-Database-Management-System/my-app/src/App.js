@@ -1,11 +1,13 @@
 import React from 'react';
 import EmployeeDatabaseManagement from './Pages/EmployeeDatabaseManagement';
+import Counter from './Pages/Counter';
 
 
 function App() {
   return (
    <div>
-    <EmployeeDatabaseManagement/>
+    {/* <EmployeeDatabaseManagement/> */}
+    <Counter/>
    </div>
   );
 }
